@@ -19,6 +19,7 @@ model User {
   RefreshToken RefreshToken[]
   firstName    String
   lastName     String
+  Task         Task[]
 
   @@index([email])
 }
@@ -31,4 +32,15 @@ model RefreshToken {
   revoked     Boolean  @default(false)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model Task {
+  id          String    @id @unique @default(uuid())
+  userId      String
+  User        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  completedAt DateTime?
+  title       String
+  completed   Boolean   @default(false)
 }
