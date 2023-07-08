@@ -6,6 +6,7 @@ import {
   updateTaskByIdSchema,
 } from "../schemas/tasks.schema";
 import {
+  completeTaskByIdHandler,
   createTaskHandler,
   deleteTaskByIdHandler,
   findTaskByIdHandler,
@@ -48,4 +49,12 @@ tasksRouter.get(
   checkTaskOwnership,
   validateResource(getAndDeleteTaskByIdSchema),
   findTaskByIdHandler
+);
+
+tasksRouter.put(
+  "/:id/complete",
+  verifyAuthentication,
+  checkTaskOwnership,
+  validateResource(getAndDeleteTaskByIdSchema),
+  completeTaskByIdHandler
 );

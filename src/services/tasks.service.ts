@@ -15,7 +15,7 @@ export function listTasksByUserId(userId: string) {
 
 export function updateTaskById(
   id: string,
-  data: { title: string; completed?: boolean }
+  data: Partial<Pick<Task, "title" | "completed"|'completedAt'>>
 ) {
   return db.task.update({
     where: { id },
