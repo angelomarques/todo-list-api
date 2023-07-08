@@ -2,12 +2,13 @@ import express from "express";
 import { validateResource } from "../middleware/validateResource";
 import {
   createTaskSchema,
-  deleteTaskByIdSchema,
+  getAndDeleteTaskByIdSchema,
   updateTaskByIdSchema,
 } from "../schemas/tasks.schema";
 import {
   createTaskHandler,
   deleteTaskByIdHandler,
+  findTaskByIdHandler,
   listTasksByUserIdHandler,
   updateTaskByIdHandler,
 } from "../controller/tasks.controller";
@@ -37,6 +38,14 @@ tasksRouter.delete(
   "/:id",
   verifyAuthentication,
   checkTaskOwnership,
-  validateResource(deleteTaskByIdSchema),
+  validateResource(getAndDeleteTaskByIdSchema),
   deleteTaskByIdHandler
+);
+
+tasksRouter.get(
+  "/:id",
+  verifyAuthentication,
+  checkTaskOwnership,
+  validateResource(getAndDeleteTaskByIdSchema),
+  findTaskByIdHandler
 );
