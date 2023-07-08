@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import {
-  LoginUserRequestBody,
-  RefreshTokenRequestBody,
-  RegisterUserRequestBody,
+  LoginUserRequestBodyType,
+  RefreshTokenRequestBodyType,
+  RegisterUserRequestBodyType,
 } from "../schemas/auth.schema";
 import {
   createUserByEmailAndPassword,
@@ -22,7 +22,7 @@ import bcrypt from "bcrypt";
 import { hashToken } from "../utils/hashToken";
 
 export const registerUserHandler = async (
-  req: Request<{}, {}, RegisterUserRequestBody>,
+  req: Request<{}, {}, RegisterUserRequestBodyType>,
   res: Response,
   next: NextFunction
 ) => {
@@ -53,7 +53,7 @@ export const registerUserHandler = async (
 };
 
 export const loginUserHandler = async (
-  req: Request<{}, {}, LoginUserRequestBody>,
+  req: Request<{}, {}, LoginUserRequestBodyType>,
   res: Response,
   next: NextFunction
 ) => {
@@ -88,7 +88,7 @@ export const loginUserHandler = async (
 };
 
 export const refreshTokenHandler = async (
-  req: Request<{}, {}, RefreshTokenRequestBody>,
+  req: Request<{}, {}, RefreshTokenRequestBodyType>,
   res: Response,
   next: NextFunction
 ) => {

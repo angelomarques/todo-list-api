@@ -26,8 +26,12 @@ export const refreshTokenSchema = z.object({
   }),
 });
 
-export type RegisterUserRequestBody = TypeOf<typeof registerUserSchema>["body"];
+export type RegisterUserRequestBodyType = TypeOf<
+  typeof registerUserSchema
+>["body"];
 
-export type LoginUserRequestBody = TypeOf<typeof loginUserSchema>["body"];
+export type LoginUserRequestBodyType = TypeOf<typeof loginUserSchema>["body"];
 
-export type RefreshTokenRequestBody = TypeOf<typeof refreshTokenSchema>["body"];
+export type RefreshTokenRequestBodyType = TypeOf<
+  typeof refreshTokenSchema
+>["body"];

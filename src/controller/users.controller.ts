@@ -2,8 +2,8 @@ import { NextFunction, Request, Response } from "express";
 import { ResponseAuthenticatedLocalsType } from "../middleware/verifyAuthentication";
 import { findUserById, updateUserById } from "../services/users.service";
 import {
-  UpdateUserRequestBody,
-  UpdateUserRequestParams,
+  UpdateUserRequestBodyType,
+  UpdateUserRequestParamsType,
 } from "../schemas/users.schema";
 
 export const getUserHandler = async (
@@ -27,7 +27,7 @@ export const getUserHandler = async (
 };
 
 export const updateUserHandler = async (
-  req: Request<UpdateUserRequestParams, {}, UpdateUserRequestBody>,
+  req: Request<UpdateUserRequestParamsType, {}, UpdateUserRequestBodyType>,
   res: Response
 ) => {
   try {

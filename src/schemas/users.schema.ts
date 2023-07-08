@@ -10,5 +10,5 @@ export const updateUserSchema = z.object({
   }),
 });
 
-export type UpdateUserRequestBody = TypeOf<typeof updateUserSchema>["body"];
-export type UpdateUserRequestParams = TypeOf<typeof updateUserSchema>["params"];
+export type UpdateUserRequestBodyType = TypeOf<typeof updateUserSchema>["body"];
+export type UpdateUserRequestParamsType = TypeOf<typeof updateUserSchema>["params"];
