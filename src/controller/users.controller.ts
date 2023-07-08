@@ -1,10 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { ResponseAuthenticatedLocalsType } from "../middleware/verifyAuthentication";
 import { findUserById, updateUserById } from "../services/users.service";
-import {
-  UpdateUserRequestBodyType,
-  UpdateUserRequestParamsType,
-} from "../schemas/users.schema";
+import { UpdateUserRequestBodyType } from "../schemas/users.schema";
 
 export const getUserHandler = async (
   req: Request,
@@ -27,11 +24,13 @@ export const getUserHandler = async (
 };
 
 export const updateUserHandler = async (
-  req: Request<UpdateUserRequestParamsType, {}, UpdateUserRequestBodyType>,
-  res: Response
+  req: Request<{}, {}, UpdateUserRequestBodyType>,
+  res: Response<{}, ResponseAuthenticatedLocalsType>
 ) => {
   try {
-    const { id: userId } = req.params;
+    const {
+      userPayload: { id: userId },
+    } = res.locals;
     const { firstName, lastName } = req.body;
 
     const newUser = await updateUserById(userId, { firstName, lastName });

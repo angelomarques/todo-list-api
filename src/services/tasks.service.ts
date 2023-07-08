@@ -12,3 +12,17 @@ export function listTasksByUserId(userId: string) {
     },
   });
 }
+
+export function updateTaskById(
+  id: string,
+  data: { title: string; completed?: boolean }
+) {
+  return db.task.update({
+    where: { id },
+    data,
+  });
+}
+
+export function findTaskById(id: string) {
+  return db.task.findUnique({ where: { id } });
+}

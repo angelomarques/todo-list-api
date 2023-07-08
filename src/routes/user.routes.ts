@@ -15,4 +15,9 @@ export const usersRouter = express.Router();
 
 usersRouter.get("/profile", verifyAuthentication, getUserHandler);
 
-usersRouter.put("/:id", validateResource(updateUserSchema), updateUserHandler);
+usersRouter.put(
+  "/",
+  verifyAuthentication,
+  validateResource(updateUserSchema),
+  updateUserHandler
+);
