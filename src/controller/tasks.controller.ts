@@ -1,17 +1,18 @@
 import { Request, Response } from "express";
 import {
   CreateTaskRequestBodyType,
-  CreateTaskRequestParamsType,
 } from "../schemas/tasks.schema";
 import { createTask, listTasksByUserId } from "../services/tasks.service";
 import { ResponseAuthenticatedLocalsType } from "../middleware/verifyAuthentication";
 
 export const createTaskHandler = async (
-  req: Request<CreateTaskRequestParamsType, {}, CreateTaskRequestBodyType>,
-  res: Response
+  req: Request<{}, {}, CreateTaskRequestBodyType>,
+  res: Response<{}, ResponseAuthenticatedLocalsType>
 ) => {
   try {
-    const { userId } = req.params;
+    const {
+      userPayload: { id: userId },
+    } = res.locals;
     const { title } = req.body;
 
     const task = await createTask({ userId, title });

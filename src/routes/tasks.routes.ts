@@ -10,7 +10,8 @@ import { verifyAuthentication } from "../middleware/verifyAuthentication";
 export const tasksRouter = express.Router();
 
 tasksRouter.post(
-  "/:userId",
+  "/",
+  verifyAuthentication,
   validateResource(createTaskSchema),
   createTaskHandler
 );
