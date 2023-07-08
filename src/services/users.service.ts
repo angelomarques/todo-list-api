@@ -25,3 +25,17 @@ export function findUserById(id: string) {
     },
   });
 }
+
+export function updateUserById(
+  id: string,
+  newUser: Pick<User, "firstName" | "lastName">
+) {
+  return db.user.update({
+    where: {
+      id,
+    },
+    data: {
+      ...newUser,
+    },
+  });
+}
