@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
 import {
   CreateTaskRequestBodyType,
+  DeleteTaskByIdParamsType,
   UpdateTaskByIdBodyType,
   UpdateTaskByIdParamsType,
 } from "../schemas/tasks.schema";
 import {
   createTask,
+  deleteTaskById,
   listTasksByUserId,
   updateTaskById,
 } from "../services/tasks.service";
@@ -48,7 +50,7 @@ export const listTasksByUserIdHandler = async (
   }
 };
 
-export const updateTaskByUserIdHandler = async (
+export const updateTaskByIdHandler = async (
   req: Request<UpdateTaskByIdParamsType, {}, UpdateTaskByIdBodyType>,
   res: Response
 ) => {
@@ -59,6 +61,21 @@ export const updateTaskByUserIdHandler = async (
     const newTask = await updateTaskById(taskId, { title, completed });
 
     return res.status(200).json(newTask);
+  } catch (err) {
+    return res.status(500).json("Internal Server Error");
+  }
+};
+
+export const deleteTaskByIdHandler = async (
+  req: Request<DeleteTaskByIdParamsType>,
+  res: Response
+) => {
+  try {
+    const { id: taskId } = req.params;
+
+    await deleteTaskById(taskId);
+
+    return res.status(200).json("Task successfully deleted");
   } catch (err) {
     return res.status(500).json("Internal Server Error");
   }

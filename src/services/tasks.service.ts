@@ -26,3 +26,7 @@ export function updateTaskById(
 export function findTaskById(id: string) {
   return db.task.findUnique({ where: { id } });
 }
+
+export function deleteTaskById(id: string) {
+  return db.task.delete({ where: { id } });
+}

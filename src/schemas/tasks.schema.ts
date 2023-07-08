@@ -16,6 +16,12 @@ export const updateTaskByIdSchema = z.object({
   }),
 });
 
+export const deleteTaskByIdSchema = z.object({
+  params: z.object({
+    id: z.string({ required_error: "Task Id is required" }),
+  }),
+});
+
 export type CreateTaskRequestBodyType = TypeOf<typeof createTaskSchema>["body"];
 
 export type UpdateTaskByIdBodyType = TypeOf<
@@ -23,4 +29,8 @@ export type UpdateTaskByIdBodyType = TypeOf<
 >["body"];
 export type UpdateTaskByIdParamsType = TypeOf<
   typeof updateTaskByIdSchema
+>["params"];
+
+export type DeleteTaskByIdParamsType = TypeOf<
+  typeof deleteTaskByIdSchema
 >["params"];
