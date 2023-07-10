@@ -12,7 +12,7 @@ export const validateResource =
       });
       next();
     } catch (err) {
-      if (err instanceof ZodError) return res.status(400).send(err.errors);
-      res.status(400).send(err);
+      if (err instanceof ZodError) return res.status(409).send(err.errors);
+      res.status(500).send(err);
     }
   };
