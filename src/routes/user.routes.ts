@@ -13,7 +13,7 @@ import { updateUserSchema } from "../schemas/users.schema";
 
 export const usersRouter = express.Router();
 
-usersRouter.get("/profile", verifyAuthentication, getUserHandler);
+usersRouter.get("/", verifyAuthentication, getUserHandler);
 
 usersRouter.put(
   "/",
